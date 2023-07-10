@@ -1,7 +1,8 @@
-# Tauri + Svelte + Typescript
+# EarthBound Patcher
 
-This template should help get you started developing with Tauri, Svelte and TypeScript in Vite.
+A recreation of [Lyrositor's EBPatcher](https://github.com/Lyrositor/EBPatcher) in Rust with Tauri + Svelte.
 
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer).
+Most ROM hacks use IPS, xdelta, or another common patching format. Select EarthBound ROM hacks have
+opted for the custom EBP (EarthBound Patch) file format, which requires the EBPatcher tool linked
+above. That only has a Windows download and I can't for the life of me get PyQt5 installed on
+macOS, so I gave up using it and decided to rewrite it.

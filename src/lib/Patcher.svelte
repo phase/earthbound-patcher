@@ -1,26 +1,52 @@
 <script lang="ts">
   import { invoke } from "@tauri-apps/api/tauri"
+  import { open, save } from '@tauri-apps/api/dialog';
 
   let originalRomLocation = "";
   let patchLocation = "";
   let destination = "";
 
-  // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-
   async function chooseROM() {
-    originalRomLocation = await invoke("choose_rom", {})
+    const selected = await open({
+      multiple: false,
+      filters: [{
+        name: 'SNES ROM',
+        extensions: ['sfc']
+      }]
+    })
+    if (selected !== null && !Array.isArray(selected)) {
+      originalRomLocation = selected
+    }
   }
 
   async function choosePatch() {
-    patchLocation = await invoke("choose_patch", {})
+    const selected = await open({
+      multiple: false,
+      filters: [{
+        name: 'ROM Patch',
+        extensions: ['ebp', 'ips']
+      }]
+    })
+    if (selected !== null && !Array.isArray(selected)) {
+      patchLocation = selected
+    }
   }
 
   async function chooseDestination() {
-    destination = await invoke("choose_destination", {})
+    const selected = await save({
+      filters: [{
+        name: 'SNES ROM',
+        extensions: ['sfc']
+      }]
+    })
+    if (selected !== null) {
+      destination = selected
+    }
   }
 
   async function patch() {
-    await invoke("patch_file", {})
+    // rom_file: String, patch_file: String, destination_file: String
+    await invoke("patch_file", {romFile: originalRomLocation, patchFile: patchLocation, destinationFile: destination})
     originalRomLocation = ""
     patchLocation = ""
     destination = ""

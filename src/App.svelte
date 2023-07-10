@@ -6,7 +6,7 @@
 
   <img src="/EB.png" class="logo earthbound" alt="EarthBound Logo" />
   <h1>EarthBound Patcher</h1>
-  <p>Create and apply EBP patches to an EarthBound ROM.</p>
+  <p>Apply an EBP patch to an EarthBound ROM.</p>
 
   <div class="row">
     <Patcher />
